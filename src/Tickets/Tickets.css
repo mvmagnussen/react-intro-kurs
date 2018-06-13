@@ -18,7 +18,11 @@
   color: #fff;
   cursor: pointer;
   font-weight: 700;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 1s ease;
+}
+
+.winner {
+  box-shadow: 0 0 50px #fff;
 }
 
 .ticket:hover {

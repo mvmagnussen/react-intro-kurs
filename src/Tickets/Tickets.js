@@ -10,7 +10,7 @@ class Tickets extends React.Component {
         <button
           className={`ticket ${
             this.props.ticketsActive ? "active" : "inactive"
-          }`}
+          }${this.props.winningTicket === ticket ? " winner" : ""}`}
           onClick={() => this.props.handleSelectTicket(ticket)}
           disabled={this.props.selectedTicket === ticket ? true : false}
           key={ticket}

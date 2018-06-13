@@ -13,7 +13,8 @@ class LotteryApp extends React.Component {
       ticketsActive: true,
       showPlayButton: false,
       showResetButton: false,
-      message: "Choose a lottery ticket below."
+      message: "Choose a lottery ticket below.",
+      winningTicket: 0
     };
     this.handleSelectTicket = this.handleSelectTicket.bind(this);
     this.handlePlay = this.handlePlay.bind(this);
@@ -29,12 +30,19 @@ class LotteryApp extends React.Component {
     }));
   }
 
-  delayedMessage(message, delay, showPlayButton, showResetButton) {
+  delayedMessage(
+    message,
+    delay,
+    showPlayButton,
+    showResetButton,
+    winningTicket
+  ) {
     setTimeout(() => {
       this.setState({
         showPlayButton: showPlayButton,
         showResetButton: showResetButton,
-        message: message
+        message: message,
+        winningTicket: winningTicket
       });
     }, delay);
   }
@@ -52,15 +60,15 @@ class LotteryApp extends React.Component {
     const randomTicket = Math.ceil(Math.random() * this.props.availableTickets);
     message = `${randomTicket}`;
 
-    this.delayedMessage(message, 1000, false, false);
+    this.delayedMessage(message, 1000, false, false, randomTicket);
 
     if (this.state.selectedTicket === randomTicket) {
-      message = `Congratulations, you won! The winning ticket was ${randomTicket}.`;
+      message = `Congratulations, you won 😁 The winning ticket was ${randomTicket}.`;
     } else {
-      message = `Sorry, you didn't win this time. The winning ticket was ${randomTicket}.`;
+      message = `Sorry, you didn't win this time 😥 The winning ticket was ${randomTicket}.`;
     }
 
-    this.delayedMessage(message, 2000, false, true);
+    this.delayedMessage(message, 2000, false, true, randomTicket);
   }
 
   handleReset() {
@@ -69,7 +77,8 @@ class LotteryApp extends React.Component {
       ticketsActive: true,
       message: "Choose a lottery ticket below.",
       showPlayButton: false,
-      showResetButton: false
+      showResetButton: false,
+      winningTicket: 0
     }));
   }
 
@@ -81,6 +90,7 @@ class LotteryApp extends React.Component {
           availableTickets={this.props.availableTickets}
           handleSelectTicket={this.handleSelectTicket}
           selectedTicket={this.state.selectedTicket}
+          winningTicket={this.state.winningTicket}
           ticketsActive={this.state.ticketsActive}
         />
         {this.state.showPlayButton && (
