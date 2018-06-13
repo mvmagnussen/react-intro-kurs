@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import Tickets from "../Tickets/Tickets";
 import PlayButton from "../PlayButton/PlayButton";
 import ResetButton from "../ResetButton/ResetButton";
+import "./LotteryApp.css";
 
 class LotteryApp extends React.Component {
   constructor(props) {

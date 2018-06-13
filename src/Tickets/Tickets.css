@@ -1,0 +1,39 @@
+.tickets {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.ticket {
+  text-align: center;
+  width: 90px;
+  height: 90px;
+  margin: 5px;
+  font-size: 22px;
+  border-radius: 10px;
+  background-color: #0069ff;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.ticket:hover {
+  background-color: #064397;
+}
+
+.ticket:focus {
+  outline: none;
+}
+
+.ticket:disabled {
+  background-color: #fff;
+  color: #010e28;
+}
+
+.ticket.inactive {
+  pointer-events: none;
+}

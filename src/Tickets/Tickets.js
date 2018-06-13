@@ -1,4 +1,5 @@
 import React from "react";
+import "./Tickets.css";
 
 class Tickets extends React.Component {
   showTickets() {
@@ -7,9 +8,9 @@ class Tickets extends React.Component {
     for (let ticket = 1; ticket <= availableTickets; ticket++) {
       tickets.push(
         <button
-          style={{
-            pointerEvents: `${this.props.ticketsActive ? "auto" : "none"}`
-          }}
+          className={`ticket ${
+            this.props.ticketsActive ? "active" : "inactive"
+          }`}
           onClick={() => this.props.handleSelectTicket(ticket)}
           disabled={this.props.selectedTicket === ticket ? true : false}
           key={ticket}
@@ -18,7 +19,7 @@ class Tickets extends React.Component {
         </button>
       );
     }
-    return <div>{tickets}</div>;
+    return <div className="tickets">{tickets}</div>;
   }
 
   render() {

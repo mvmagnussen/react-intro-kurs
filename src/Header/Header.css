@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Molle:400i");
+
+.title {
+  color: #fff;
+  font-weight: 900;
+  font-family: "Molle", cursive;
+  font-size: 56px;
+  margin: 40px auto;
+}
+
+.message {
+  background-color: #031946;
+  padding: 40px;
+  border-radius: 10px;
+  margin: 40px 5px;
+  font-size: 20px;
+}

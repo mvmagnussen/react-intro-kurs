@@ -1,0 +1,15 @@
+.lottery-app {
+  width: 800px;
+}
+
+@media only screen and (min-device-width: 200px) and (max-device-width: 667px) {
+  .lottery-app {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 20px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+}
