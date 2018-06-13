@@ -7,6 +7,9 @@ class Tickets extends React.Component {
     for (let ticket = 1; ticket <= availableTickets; ticket++) {
       tickets.push(
         <button
+          style={{
+            pointerEvents: `${this.props.ticketsActive ? "auto" : "none"}`
+          }}
           onClick={() => this.props.handleSelectTicket(ticket)}
           disabled={this.props.selectedTicket === ticket ? true : false}
           key={ticket}

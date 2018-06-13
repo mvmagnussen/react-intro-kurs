@@ -9,6 +9,7 @@ class LotteryApp extends React.Component {
     super(props);
     this.state = {
       selectedTicket: undefined,
+      ticketsActive: true,
       showPlayButton: false,
       showResetButton: false,
       message: "Choose a lottery ticket below."
@@ -21,29 +22,50 @@ class LotteryApp extends React.Component {
   handleSelectTicket(ticket) {
     this.setState(() => ({
       selectedTicket: ticket,
+      ticketsActive: true,
       showPlayButton: true,
       showResetButton: false
     }));
   }
 
+  delayedMessage(message, delay, showPlayButton, showResetButton) {
+    setTimeout(() => {
+      this.setState({
+        showPlayButton: showPlayButton,
+        showResetButton: showResetButton,
+        message: message
+      });
+    }, delay);
+  }
+
   handlePlay() {
-    const randomTicket = Math.ceil(Math.random() * this.props.availableTickets);
-    let message = `The winning ticket is ${randomTicket}. `;
-    if (this.state.selectedTicket === randomTicket) {
-      message += "Congratulations, you won!";
-    } else {
-      message += "Sorry, you didn't win this time.";
-    }
-    this.setState(() => ({
+    let message = "The winning ticket is ...";
+
+    this.setState({
+      ticketsActive: false,
       message: message,
       showPlayButton: false,
-      showResetButton: true
-    }));
+      showResetButton: false
+    });
+
+    const randomTicket = Math.ceil(Math.random() * this.props.availableTickets);
+    message = `${randomTicket}`;
+
+    this.delayedMessage(message, 1000, false, false);
+
+    if (this.state.selectedTicket === randomTicket) {
+      message = `Congratulations, you won! The winning ticket was ${randomTicket}.`;
+    } else {
+      message = `Sorry, you didn't win this time. The winning ticket was ${randomTicket}.`;
+    }
+
+    this.delayedMessage(message, 2000, false, true);
   }
 
   handleReset() {
     this.setState(() => ({
       selectedTicket: undefined,
+      ticketsActive: true,
       message: "Choose a lottery ticket below.",
       showPlayButton: false,
       showResetButton: false
@@ -58,6 +80,7 @@ class LotteryApp extends React.Component {
           availableTickets={this.props.availableTickets}
           handleSelectTicket={this.handleSelectTicket}
           selectedTicket={this.state.selectedTicket}
+          ticketsActive={this.state.ticketsActive}
         />
         {this.state.showPlayButton && (
           <PlayButton handlePlay={this.handlePlay} buttonText="Play" />
